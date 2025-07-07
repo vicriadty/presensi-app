@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-brand {
+    font-weight: 500;
+}
+
+.nav_ul li {
+  padding: 0 0.8rem;
+}
+
+.nav-link:hover {
+  font-size: 1rem;
+  color: #000;
+  font-weight: 500;
+}
+
+.btn2 {
+  border: 0;
+  padding: 0.1rem 0.8rem;
+  color: #fff;
+  background-color: #f60838;
+  border-radius: 10px;
+}
