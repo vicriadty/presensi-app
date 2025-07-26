@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../services/supabase";
+import { supabase } from "../../services/supabase";
 import { Link } from "react-router-dom";
 
 export default function User() {
@@ -32,11 +32,6 @@ export default function User() {
       setMessage("User berhasil dihapus.");
       fetchUsers();
     }
-  };
-
-  const handleEdit = (id) => {
-    alert(`Navigasi ke halaman edit user dengan ID: ${id}`);
-    // Bisa diarahkan ke route lain, contoh: navigate(`/user/edit/${id}`)
   };
 
   return (
@@ -74,9 +69,9 @@ export default function User() {
                   <td>{user.email}</td>
                   <td>{user.role}</td>
                   <td>
-                    <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(user.id)}>
+                    <Link className="btn btn-sm btn-warning me-2" to={`/user/edit/${user.id}`}>
                       Edit
-                    </button>
+                    </Link>
                     <button className="btn btn-sm btn-danger" onClick={() => handleDelete(user.id)}>
                       Hapus
                     </button>

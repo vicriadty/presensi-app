@@ -27,7 +27,9 @@ export default function Register() {
         email: form.email,
         role: form.role,
       });
+      
       setMessage("Registrasi berhasil! Silakan login.");
+      setForm({ nama: "", email: "", password: "", role: "mahasiswa" });
     }
   };
 
@@ -39,15 +41,15 @@ export default function Register() {
           <form onSubmit={handleRegister}>
             <div className="mb-3">
               <label className="form-label">Nama</label>
-              <input name="nama" type="text" className="form-control" placeholder="Masukkan email" onChange={handleChange} required />
+              <input name="nama" type="text" className="form-control" placeholder="Masukkan email" value={form.nama} onChange={handleChange} required />
             </div>
             <div className="mb-3">
               <label className="form-label">Email</label>
-              <input name="email" type="email" className="form-control" placeholder="Masukkan email" onChange={handleChange} required />
+              <input name="email" type="email" className="form-control" placeholder="Masukkan email" value={form.email} onChange={handleChange} required />
             </div>
             <div className="mb-3">
               <label className="form-label">Password</label>
-              <input name="password" type="password" className="form-control" placeholder="Masukkan password" onChange={handleChange} required />
+              <input name="password" type="password" className="form-control" placeholder="Masukkan password" value={form.password} onChange={handleChange} required />
             </div>
             <div className="mb-4">
               <label className="form-label">Role</label>
