@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { supabase } from "../../services/supabase";
+import { Link } from "react-router-dom";
 
 const RekapPresensi = () => {
   const [presensi, setPresensi] = useState([]);
@@ -23,6 +24,9 @@ const RekapPresensi = () => {
 
   return (
     <div className="container mt-5">
+      <Link className="nav-link" to={"/"}>
+        <i class="bi bi-arrow-left fs-3"></i>
+      </Link>
       <h2 className="text-center mb-4">Data Presensi Lengkap</h2>
       {loading ? (
         <div className="text-center">Loading...</div>
@@ -50,17 +54,7 @@ const RekapPresensi = () => {
                   <td>{item.nama_dosen}</td>
                   <td>{item.lokasi}</td>
                   <td>
-                    <span
-                      className={`badge ${
-                        item.status === "hadir"
-                          ? "bg-success"
-                          : item.status === "izin"
-                          ? "bg-warning"
-                          : "bg-danger"
-                      }`}
-                    >
-                      {item.status}
-                    </span>
+                    <span className={`badge ${item.status === "hadir" ? "bg-success" : item.status === "izin" ? "bg-warning" : "bg-danger"}`}>{item.status}</span>
                   </td>
                 </tr>
               ))}
@@ -77,6 +71,6 @@ const RekapPresensi = () => {
       )}
     </div>
   );
-}
+};
 
-export default RekapPresensi
+export default RekapPresensi;

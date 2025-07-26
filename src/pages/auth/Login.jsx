@@ -27,7 +27,7 @@ export default function Login() {
       return setMessage("Data profil tidak ditemukan.");
     }
 
-    navigate("/dashboard");
+    navigate("/");
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
+import { Link } from "react-router-dom";
 
 export default function User() {
   const [users, setUsers] = useState([]);
@@ -40,6 +41,9 @@ export default function User() {
 
   return (
     <div className="container mt-5">
+      <Link className="nav-link" to={"/"}>
+        <i class="bi bi-arrow-left fs-3"></i>
+      </Link>
       <h2 className="mb-4">Manajemen User</h2>
 
       {message && <div className="alert alert-info">{message}</div>}
@@ -70,16 +74,10 @@ export default function User() {
                   <td>{user.email}</td>
                   <td>{user.role}</td>
                   <td>
-                    <button
-                      className="btn btn-sm btn-warning me-2"
-                      onClick={() => handleEdit(user.id)}
-                    >
+                    <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(user.id)}>
                       Edit
                     </button>
-                    <button
-                      className="btn btn-sm btn-danger"
-                      onClick={() => handleDelete(user.id)}
-                    >
+                    <button className="btn btn-sm btn-danger" onClick={() => handleDelete(user.id)}>
                       Hapus
                     </button>
                   </td>

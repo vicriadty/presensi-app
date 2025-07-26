@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../services/supabase";
+import { Link } from "react-router-dom";
 
 export default function FormPresensi() {
   const [kelasList, setKelasList] = useState([]);
   const [form, setForm] = useState({ kelas_id: "", status: "hadir" });
   const [lokasi, setLokasi] = useState(null);
+  const [ipAddress, setIpAddress] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,9 +17,21 @@ export default function FormPresensi() {
       setKelasList(data || []);
     }
 
+    const fetchIP = async () => {
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        setIpAddress(data.ip);
+      } catch (err) {
+        console.error("Gagal mendapatkan IP:", err);
+      }
+    };
+
     fetchKelas();
+    fetchIP();
     getUserLocation();
   }, []);
+
 
   // Ambil lokasi otomatis via GPS
   const getUserLocation = () => {
@@ -61,6 +75,7 @@ export default function FormPresensi() {
       user_id: user.id,
       kelas_id: form.kelas_id,
       lokasi: lokasi || "Tidak tersedia",
+      ip_address: ipAddress,  
       status: form.status,
       waktu_presensi: new Date().toISOString(),
     });
@@ -76,7 +91,9 @@ export default function FormPresensi() {
   };
 
   return (
+    <>
     <div className="container mt-5">
+      <Link className="nav-link" to={"/"}><i class="bi bi-arrow-left fs-3"></i></Link>
       <h2 className="text-center mb-4">Isi Presensi</h2>
       <form onSubmit={handleSubmit} className="col-md-6 mx-auto">
         <div className="mb-3">
@@ -126,5 +143,6 @@ export default function FormPresensi() {
         {message && <div className="alert alert-info mt-3 text-center">{message}</div>}
       </form>
     </div>
+    </>
   );
 }

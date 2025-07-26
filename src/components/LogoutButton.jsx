@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom"
+import { redirect, useNavigate } from "react-router-dom"
 import { supabase } from '../services/supabase'
+import "../App.css"
 
 export default function LogoutButton() {
   const navigate = useNavigate()
@@ -18,7 +19,7 @@ export default function LogoutButton() {
 
   return (
     <button onClick={handleLogout} className="btn text-white">
-      Logout
+      <i className="bi bi-box-arrow-right"></i>
     </button>
   )
 }

@@ -14,11 +14,7 @@ const Navbar = () => {
       } = await supabase.auth.getUser();
       if (!user) return navigate("/login");
 
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .single();
+      const { data, error } = await supabase.from("profiles").select("role").eq("id", user.id).single();
 
       if (error || !data) return navigate("/login");
 
@@ -37,30 +33,19 @@ const Navbar = () => {
           Presensi Mahasiswa
         </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
+        <button className="navbar-toggler d-none md:block" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul className="navbar-nav gap-3">
             <li className="nav-item">
-              <Link className="nav-link" to="/dashboard">
+              <Link className="nav-link" to="/">
                 Dashboard
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                 Presensi
               </Link>
               <ul className="dropdown-menu">
@@ -88,14 +73,29 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="d-flex align-items-center">
-          <span className="me-3 text-muted small">
+        <div className="d-flex align-items-center gap-2">
+          <span className="welcome-msg me-3 text-muted small">
+            Selamat Datang, <strong>{role} !</strong>
+          </span>
+          {/* Logout button untuk desktop */}
+          <Link type="button" className="btn btn-danger btn-sm d-none d-md-block">
+            <LogoutButton />
+          </Link>
+
+          {/* Icon logout untuk mobile */}
+          <Link type="button" className="btn btn-danger btn-sm d-block d-md-none">
+            <LogoutButton />
+          </Link>
+        </div>
+
+        {/* <div className="d-flex align-items-center">
+          <span className="welcome-msg me-3 text-muted small">
             Selamat Datang, <strong>{role} !</strong>
           </span>
           <button type="button" className="btn2">
-          <LogoutButton />
+            <LogoutButton />
           </button>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
