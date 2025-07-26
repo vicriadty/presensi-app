@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../services/supabase";
 
 const UserEdit = () => {
@@ -29,8 +29,8 @@ const UserEdit = () => {
   }, [id]);
 
   const handleChange = (e) => {
-    const { nama, value } = e.target;
-    setUser((prev) => ({ ...prev, [nama]: value }));
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -95,9 +95,12 @@ const UserEdit = () => {
           </select>
         </div>
 
-        <button className="btn btn-primary w-100" type="submit">
+        <button className="btn btn-success w-100" type="submit">
           Simpan Perubahan
         </button>
+        <Link className="btn btn-warning mt-3 w-100" to={"/user"}>
+          Kembali
+        </Link>
       </form>
     </div>
   );
