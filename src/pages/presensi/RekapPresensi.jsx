@@ -41,6 +41,7 @@ const RekapPresensi = () => {
                 <th>Kelas</th>
                 <th>Dosen</th>
                 <th>Lokasi</th>
+                <th>IP Address</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -53,6 +54,7 @@ const RekapPresensi = () => {
                   <td>{item.nama_kelas}</td>
                   <td>{item.nama_dosen}</td>
                   <td>{item.lokasi}</td>
+                  <td>{item.ip_address}</td>
                   <td>
                     <span className={`badge ${item.status === "hadir" ? "bg-success" : item.status === "izin" ? "bg-warning" : "bg-danger"}`}>{item.status}</span>
                   </td>
